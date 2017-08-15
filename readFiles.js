@@ -37,14 +37,22 @@ function readDir(rootFolder) {
 }
 
 function countWords(data, wordsArray) {
+    let dataArray = data.replace(/[.,?!;()"'-]/g, " ").replace(/\s+/g, " ").toLowerCase().split(" ");
     for (let word of wordsArray){
         let count = 0;
-        let dataArray = data.replace(/[.,?!;()"'-]/g, " ").replace(/\s+/g, " ").toLowerCase().split(" ");
-        for (let item of dataArray) {
-            if (word == item) {
+
+        for (let [index, value] of dataArray.entries()) {
+            if (word == value){
                 count++;
+                dataArray[index] = "";
             }
         }
+        // for (let item of dataArray) {
+        //     if (word == item) {
+        //
+        //         count++;
+        //     }
+        // }
         console.log(word + ": " + count);
     }
 }
